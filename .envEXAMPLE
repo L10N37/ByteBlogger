@@ -1,0 +1,6 @@
+DB_HOST=localhost
+DB_USER=username
+DB_PASSWORD=password
+DB_NAME=tech_blog_db
+SESSION_SECRET=your_session_secret
+DB_PORT= 3306 #Only used for the scripts
