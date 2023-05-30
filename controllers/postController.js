@@ -1,5 +1,6 @@
 const { Post, User, Comment } = require('../models');
 
+
 const postController = {
   // Homepage - Get all posts
   getHomePage: async (req, res) => {
@@ -7,7 +8,7 @@ const postController = {
       // Retrieve all posts from the database
       const posts = await Post.findAll({
         include: [{ model: User, attributes: ['username'] }, { model: Comment }],
-        order: [['createdAt', 'DESC']],
+        order: [['created_at', 'DESC']],
       });
 
       // Render the homepage view with the retrieved posts

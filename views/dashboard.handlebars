@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+      </ul>
+      <div>
+        {{#if user}}
+          <a href="/logout">Logout</a>
+        {{else}}
+          <a href="/signin">Sign In</a>
+          <a href="/signup">Sign Up</a>
+        {{/if}}
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    {{#if user}}
+      <h1>Welcome, {{user.username}}!</h1>
+
+      <h2>Your Posts</h2>
+      {{#if userPosts}}
+        <ul>
+          {{#each userPosts}}
+            <li>
+              <h3>{{title}}</h3>
+              <p>Posted on {{formatDate created_at}}</p>
+              <p>{{summary}}</p>
+              <a href="/post/{{id}}">Read More</a>
+            </li>
+          {{/each}}
+        </ul>
+      {{else}}
+        <p>You have no posts.</p>
+      {{/if}}
+    {{else}}
+      <p>Please sign in to access the dashboard.</p>
+    {{/if}}
+  </main>
+
+  <footer>
+    <p>© 2023 ByteBlogger. All rights reserved.</p>
+  </footer>
+</body>
+</html>

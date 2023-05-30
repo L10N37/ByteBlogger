@@ -3,7 +3,7 @@ require('dotenv').config();
 
 async function createDatabase() {
   try {
-    // helpful for debug to make sure .env file has correct formatting / syntax
+    // Helpful for debug to make sure .env file has correct formatting / syntax
     console.log('Connecting to MySQL...');
     console.log('Host:', process.env.DB_HOST);
     console.log('Port:', process.env.DB_PORT);
@@ -18,7 +18,8 @@ async function createDatabase() {
     });
 
     const databaseName = process.env.DB_NAME;
-    await connection.query(`CREATE DATABASE IF NOT EXISTS ${databaseName}`);
+    await connection.query(`DROP DATABASE IF EXISTS ${databaseName}`);
+    await connection.query(`CREATE DATABASE ${databaseName}`);
     console.log('Database created successfully.');
     await connection.end();
   } catch (error) {

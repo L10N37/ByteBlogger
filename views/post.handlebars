@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ByteBlogger - fulfill your deepest blogging desires, right here!</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+      </ul>
+      <div>
+        {{#if user}}
+          <a href="/logout">Logout</a>
+        {{else}}
+          <a href="/signin">Sign In</a>
+          <a href="/signup">Sign Up</a>
+        {{/if}}
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <h1>{{post.title}}</h1>
+      <p>Created by {{post.author.username}} on {{formatDate post.createdAt}}</p>
+      <p>{{post.content}}</p>
+    </article>
+
+    {{#if user}}
+      <form action="/comment" method="POST">
+        <label for="comment">Leave a Comment:</label>
+        <textarea id="comment" name="comment" required></textarea>
+
+        <input type="hidden" name="postId" value="{{post.id}}">
+
+        <button type="submit">Submit Comment</button>
+      </form>
+    {{else}}
+      <p>Please <a href="/signin">sign in</a> to leave a comment.</p>
+    {{/if}}
+
+    {{#if post.comments.length}}
+      <h2>Comments</h2>
+      <ul>
+        {{#each post.comments}}
+          <li>
+            <p>{{this.content}}</p>
+            <p>Comment by {{this.author.username}} on {{formatDate this.created_at}}</p>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p>No comments yet.</p>
+    {{/if}}
+  </main>
+
+  <footer>
+    <p>© 2023 ByteBlogger. All rights reserved.</p>
+  </footer>
+</body>
+</html>

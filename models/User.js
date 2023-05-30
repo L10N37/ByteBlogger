@@ -22,7 +22,6 @@ User.init(
       allowNull: false,
     },
     // Add any additional fields required
-
   },
   {
     sequelize,
@@ -30,7 +29,12 @@ User.init(
     freezeTableName: true,
     underscored: true,
     modelName: 'user',
+    name: {
+      singular: 'user',
+      plural: 'users',
+    },
   }
 );
 
 module.exports = User;
+const Post = require('./Post');

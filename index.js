@@ -31,6 +31,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 const routes = require('./controllers');
 app.use(routes);
 
+// Define the route for the homepage
+app.get('/', (req, res) => {
+  const posts = []; // Retrieve posts from the database as needed
+
+  res.render('homepage', { asciiArtText, blogPosts: posts });
+});
+
 // Start the server
 sequelize.sync().then(() => { // Sync the sequelize models with the database
   app.listen(PORT, () => {
