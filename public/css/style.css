@@ -18,3 +18,21 @@
     font-size: 16px;
     line-height: 1.5;
   }
+
+  #textLogo{
+    font-size:36px;
+    font-weight: bold;
+  }
+
+  @media (max-width: 1443px) { /* Adjust the breakpoint value as needed */
+    #asciiArt {
+      display: none;
+    }
+  }
+  
+  @media (min-width: 1443px) { /* Adjust the breakpoint value as needed */
+    #textLogo {
+      display: none;
+    }
+  }
+  
