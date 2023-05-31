@@ -9,6 +9,12 @@ const userController = {
       // Get user input from the request body
       const { username, password } = req.body;
 
+      // Check if username already exists
+      const usernameExists = await userController.checkUsername(username);
+      if (usernameExists) {
+        return res.status(409).json({ message: 'Username already exists. Please choose a different username.' });
+      }
+
       // Hash the password
       const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -49,15 +55,15 @@ const userController = {
     }
   },
 
-    // Check username availability
-  checkUsernameAvailability: async (req, res) => {
+  checkUsername: async (username) => {
     try {
-      const { username } = req.body;
-      const user = await User.findOne({ where: { username } });
+      // Perform a database query to check if the username exists
+      const existingUser = await User.findOne({ where: { username } });
 
-      res.json({ exists: !!user });
+      return !!existingUser;
     } catch (error) {
-      res.status(500).json({ message: 'Error checking username availability', error: error.message });
+      console.error('Error checking username:', error);
+      return false;
     }
   },
 
