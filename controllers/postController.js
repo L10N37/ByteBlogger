@@ -1,23 +1,28 @@
 const { Post, User, Comment } = require('../models');
 
-
-const postController = {
-  // Homepage - Get all posts
-  getHomePage: async (req, res) => {
-    try {
-      // Retrieve all posts from the database
-      const posts = await Post.findAll({
-        include: [{ model: User, attributes: ['username'] }, { model: Comment }],
-        order: [['created_at', 'DESC']],
-      });
-
-      // Render the homepage view with the retrieved posts
-      res.render('homepage', { posts });
-    } catch (error) {
-      res.status(500).json({ message: 'Error retrieving posts', error: error.message });
-    }
-  },
-
+  const postController = {
+    getHomePage: async (req, res) => {
+      try {
+        const posts = await Post.findAll({
+          attributes: ['title', 'content', 'created_at'],
+          include: [
+            {
+              model: User,
+              attributes: ['username'],
+              as: 'user', // Change the alias to 'user'
+            },
+          ],
+          order: [['created_at', 'DESC']],
+        });
+  
+        res.render('homepage', { posts });
+  
+      } catch (error) {
+        console.error('Error retrieving posts:', error);
+        res.status(500).json({ message: 'Error retrieving posts', error: error.message });
+      }
+    },
+    
   // Create a new post
   createPost: async (req, res) => {
     try {
@@ -81,25 +86,27 @@ const postController = {
     }
   },
 
-  // View post details
   viewPost: async (req, res) => {
     try {
       // Find the post in the database
       const post = await Post.findByPk(req.params.id, {
-        include: [{ model: User, attributes: ['username'] }, { model: Comment, include: [User] }],
-    });
-
-    // If the post doesn't exist, return an error
-    if (!post) {
-      return res.status(404).json({ message: 'Post not found' });
+        include: [
+          { model: User, attributes: ['username'], as: 'user' },
+          { model: Comment, include: [User] },
+        ],
+      });
+  
+      // If the post doesn't exist, return an error
+      if (!post) {
+        return res.status(404).json({ message: 'Post not found' });
+      }
+  
+      // Render the post details view with the retrieved post
+      res.render('post', { post });
+    } catch (error) {
+      res.status(500).json({ message: 'Error retrieving post details', error: error.message });
     }
-
-    // Render the post details view with the retrieved post
-    res.render('post', { post });
-  } catch (error) {
-    res.status(500).json({ message: 'Error retrieving post details', error: error.message });
-  }
-},
+  },  
 
 // Leave a comment on a post
 leaveComment: async (req, res) => {

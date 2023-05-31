@@ -45,4 +45,8 @@ Post.init(
   }
 );
 
+Post.belongsTo(User, {
+  foreignKey: 'user_id',
+});
+
 module.exports = Post;

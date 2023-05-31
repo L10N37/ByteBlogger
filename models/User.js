@@ -37,4 +37,3 @@ User.init(
 );
 
 module.exports = User;
-const Post = require('./Post');

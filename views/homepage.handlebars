@@ -39,21 +39,15 @@
                                                                                                                                                     </pre>
 
 
-    {{#if blogPosts}}
-      <h2>Recent Posts</h2>
-      <ul>
-        {{#each blogPosts}}
-          <li>
-            <h3>{{title}}</h3>
-            <p>Posted on {{formatDate created_at}}</p>
-            <p>{{summary}}</p>
-            <a href="/post/{{id}}">Read More</a>
-          </li>
-        {{/each}}
-      </ul>
-    {{else}}
-      <p>No posts available.</p>
-    {{/if}}
+{{#each posts}}
+  <div class="post">
+    <h2>{{this.dataValues.title}}</h2>
+    <p>{{this.dataValues.content}}</p>
+    <p>Author: {{this.dataValues.user.dataValues.username}}</p>
+    <p>Created at: {{formatDate this.dataValues.created_at}}</p>
+  </div>
+{{/each}}
+
   </main>
 
   <footer>
