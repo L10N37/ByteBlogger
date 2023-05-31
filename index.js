@@ -25,7 +25,6 @@ app.use(
   })
 );
 
-
 const hbs = exphbs.create({
   defaultLayout: 'main',
   helpers: {

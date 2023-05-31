@@ -6,22 +6,13 @@
   <title>Sign In to Byte Blogger!</title>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/dashboard">Dashboard</a></li>
-      </ul>
-      <div>
-        {{#if user}}
-          <a href="/logout">Logout</a>
-        {{else}}
-          <a href="/signin">Sign In</a>
-          <a href="/signup">Sign Up</a>
-        {{/if}}
-      </div>
-    </nav>
-  </header>
+<header>
+  <nav>
+    <ul class="header-list">
+      <li class="middle-item"><a href="/">Home</a></li>
+    </ul>
+  </nav>
+</header>
 
   <main>
     <h1>Sign In</h1>
@@ -35,6 +26,18 @@
 
       <button type="submit">Sign In</button>
     </form>
+  <br>
+  <br>
+
+  <h1>Sign Up</h1>
+        <form action="/signup" method="POST">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Sign Up</button>
   </main>
 
   <footer>
