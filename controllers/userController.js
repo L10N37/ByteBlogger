@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const { User } = require('../models');
+const session = require('express-session');
 
 const userController = {
   // Sign up functionality
@@ -51,7 +52,7 @@ const userController = {
   // Logout functionality
   logout: (req, res) => {
     try {
-      // Clear the session data
+      // Destroy the session data
       req.session.destroy();
 
       // Send a response or redirect to the desired page
