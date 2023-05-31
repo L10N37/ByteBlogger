@@ -49,6 +49,18 @@ const userController = {
     }
   },
 
+    // Check username availability
+  checkUsernameAvailability: async (req, res) => {
+    try {
+      const { username } = req.body;
+      const user = await User.findOne({ where: { username } });
+
+      res.json({ exists: !!user });
+    } catch (error) {
+      res.status(500).json({ message: 'Error checking username availability', error: error.message });
+    }
+  },
+
   // Logout functionality
   logout: (req, res) => {
     try {

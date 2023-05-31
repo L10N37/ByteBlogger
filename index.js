@@ -49,6 +49,10 @@ app.get('/signin', (req, res) => {
   res.render('signin');
 });
 
+// Handle signup form submission
+const userController = require('./controllers/userController');
+app.post('/signup', userController.signUp);
+
 // Sync the session store
 sessionStore.sync();
 

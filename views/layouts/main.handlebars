@@ -7,18 +7,6 @@
   <title>ByteBlogger - fulfill your deepest blogging desires, right here!</title>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul class="header-list">
-        {{#if user}}
-          <li><a href="/users/logout">Logout</a></li>
-          <li><a href="/dashboard">Dashboard</a></li>
-        {{else}}
-          <li class="links"><a href="/signin">Sign In</a></li>
-        {{/if}}
-      </ul>
-    </nav>
-  </header>
   {{{body}}}
 </body>
   <footer>

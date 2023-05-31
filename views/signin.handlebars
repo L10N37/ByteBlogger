@@ -14,34 +14,43 @@
   </nav>
 </header>
 
-  <main>
-    <h1>Sign In</h1>
+<main>
+  <h1>Sign In</h1>
 
-    <form action="/signin" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required>
+  <form action="/signin" method="POST">
+    <label for="signin-username">Username:</label>
+    <input type="text" id="signin-username" name="username" required>
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
+    <label for="signin-password">Password:</label>
+    <input type="password" id="signin-password" name="password" required>
 
-      <button type="submit">Sign In</button>
-    </form>
+    <button type="submit">Sign In</button>
+  </form>
+
   <br>
   <br>
 
   <h1>Sign Up</h1>
-        <form action="/signup" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required>
+  <form action="/signup" method="POST">
+    <label for="signup-username">Username:</label>
+    <input type="text" id="signup-username" name="username" required>
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
+    <label for="signup-password">Password:</label>
+    <input type="password" id="signup-password" name="password" required>
 
-      <button type="submit">Sign Up</button>
-  </main>
+    <button type="submit">Sign Up</button>
+    <p class="error-message"></p>
+    <p class="success-message"></p>
 
-  <footer>
-    <p>© 2023 ByteBlogger. All rights reserved.</p>
-  </footer>
+    <img src="/assets/images/phoneKitty.png">
+
+  </form>
+</main>
+
+<footer>
+  <p>© 2023 ByteBlogger. All rights reserved.</p>
+</footer>
+
+<script src="/js/signin.js"></script>
 </body>
 </html>
