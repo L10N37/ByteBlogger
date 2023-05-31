@@ -31,5 +31,5 @@ router.delete('/posts/:id', postController.deletePost);
 router.get('/posts/:id', postController.viewPost);
 
 router.post('/comments/:id', commentController.leaveComment);
-  
+
 module.exports = router;

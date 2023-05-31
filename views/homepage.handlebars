@@ -1,27 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ByteBlogger - fulfill your deepest blogging desires, right here!</title>
-  </head>
-<body>
-<header>
-<nav>
-  <ul class="header-list">
-    {{#if user}}
-      <li><a href="/users/logout">Logout</a></li>
-      <li><a href="/dashboard">Dashboard</a></li>
-    {{else}}
-      <li class = 'links'><a href="/signin">Sign In</a></li>
-    {{/if}}
-  </ul>
-</nav>
-
-</header>
-
+<html>
   <main>
-
 <div class="logo">
   <pre id="asciiArt">
  ▄▄▄▄▄▄▄▄▄▄   ▄         ▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄   ▄            ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ 
@@ -50,9 +28,4 @@
 {{/each}}
 
   </main>
-
-  <footer>
-    <p>© 2023 ByteBlogger. All rights reserved.</p>
-  </footer>
-</body>
 </html>

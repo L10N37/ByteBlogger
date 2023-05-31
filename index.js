@@ -30,6 +30,7 @@ const hbs = exphbs.create({
   helpers: {
     formatDate,
   },
+  partialsDir: path.join(__dirname, 'views/partials') // Specify the path to your partials directory
 });
 
 app.engine('handlebars', hbs.engine);
@@ -42,6 +43,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const routes = require('./controllers');
 app.use(routes);
+
+// render the sign-in page when navigating to /signin from the homepage
+app.get('/signin', (req, res) => {
+  res.render('signin');
+});
 
 // Sync the session store
 sessionStore.sync();
