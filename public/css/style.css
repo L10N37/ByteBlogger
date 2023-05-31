@@ -72,13 +72,34 @@
     bottom: 0;
     width: 100%;
   }
-  
+
+/* Styles for error message */
 .error-message {
   color: red;
   margin-bottom: 10px;
 }
 
+/* Styles for success message */
 .success-message {
   color: green;
   margin-bottom: 10px;
+}
+
+/* Styles for the cat image */
+.cat-image {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Media queries to adjust the cat image size */
+@media screen and (max-width: 768px) {
+  .cat-image {
+    width: 50%; /* Adjust the width for smaller screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cat-image {
+    width: 30%; /* Adjust the width for even smaller screens */
+  }
 }
