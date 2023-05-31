@@ -42,10 +42,22 @@
     list-style-type: none;
     padding: 0;
     font-size: 20px;
-    color: blue;
   }
   
- 
+  .header-list li {
+    color: inherit; /* Use the default text color */
+  }
+  
+  .header-list li a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use the default text color */
+  }
+  
+  .header-list li a:hover,
+  .header-list li a:focus {
+    color: inherit; /* Use the default text color */
+  }
+   
   .left-item, .right-item {  /*  spacing between list items when crushed on small res */
     margin-right: 10px;
   }
