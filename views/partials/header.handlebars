@@ -1,3 +1,7 @@
+{{#if isUserLoggedIn}}
+  <h1>Welcome, {{isUser}}</h1>
+{{/if}}
+
 <ul class="header-list">
   {{#if isUserLoggedIn}}
     <li><a href="/dashboard">Dashboard</a></li>

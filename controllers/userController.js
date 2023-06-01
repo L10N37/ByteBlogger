@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 const { User } = require('../models');
 
 const userController = {
@@ -34,9 +33,13 @@ const userController = {
       if (!validPassword) {
         return res.status(401).json({ message: 'Incorrect password, please try again' });
       }
+      // store username in session/ cookie
       req.session.user = username;
-      // Set isUserLoggedIn in session
+      // Set isUserLoggedIn boolean to true in session / cookie
       req.session.isUserLoggedIn = true;
+      // Store userID in in session/ cookie
+      req.session.userId = user.id;
+
       req.session.save(() => {
         res.json({ user, message: 'You are now logged in!' });
       });

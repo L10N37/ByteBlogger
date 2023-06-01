@@ -31,6 +31,13 @@ const hbs = exphbs.create({
     formatDate,
   },
   partialsDir: path.join(__dirname, 'views', 'partials'), // Specify the correct path to your partials directory
+  // Pass additional variables to be accessible in all templates using 'main' layout
+  runtimeOptions: {
+    data: {
+      isUserLoggedIn: req => req.session.isUserLoggedIn || false,
+      isUser: req => req.session.user || false,
+    },
+  },
 });
 
 app.engine('handlebars', hbs.engine);
@@ -43,38 +50,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const routes = require('./controllers');
 app.use(routes);
-
-// Middleware to pass variables to all pages
-app.use((req, res, next) => {
-  res.locals.isUserLoggedIn = req.session.isUserLoggedIn || false;
-  res.locals.isUser = req.session.user || false;
-  next();
-});
-
-// Render the home page when navigating to /home
-app.get('/home', (req, res) => {
-  res.render('home', { isUserLoggedIn: res.locals.isUserLoggedIn });
-});
-
-// Render the dashboard page when navigating to /dashboard
-app.get('/dashboard', (req, res) => {
-  res.render('dashboard');
-});
-
-// Render the sign-in page when navigating to /signin
-app.get('/signin', (req, res) => {
-  res.render('signin');
-});
-
-// Handle logout request
-const userController = require('./controllers/userController');
-app.get('/users/logout', userController.logout);
-
-// Handle signup form submission
-app.post('/signup', userController.signUp);
-
-// Handle sign-in form submission
-app.post('/signin', userController.signIn);
 
 // Sync the session store
 sessionStore.sync();
