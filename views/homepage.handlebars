@@ -3,19 +3,8 @@
 <head>
   <title>My Website</title>
 </head>
-<body>
-  <header>
-    <nav>
-      <ul class="header-list">
-        {{#if ifUserLoggedIn}}
-          <li><a href="/dashboard">Dashboard</a></li>
-          <li><a href="/users/logout">Logout</a></li>
-        {{else}}
-          <li><a href="/signin">Sign In</a></li>
-        {{/if}}
-      </ul>
-    </nav>
-  </header>
+
+{{> header}}
 
 {{> ascii}}
 

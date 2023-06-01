@@ -34,8 +34,8 @@ const userController = {
       if (!validPassword) {
         return res.status(401).json({ message: 'Incorrect password, please try again' });
       }
-      req.session.user_id = user.id;
-      req.session.logged_in = true;
+      req.session.user = username;
+      req.session.isUserLoggedIn = true;
       req.session.save(() => {
         res.json({ user, message: 'You are now logged in!' });
       });

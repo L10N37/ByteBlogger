@@ -1,0 +1,8 @@
+<ul class="header-list">
+  {{#if isUserLoggedIn}}
+    <li><a href="/dashboard">Dashboard</a></li>
+    <li><a href="/users/logout">Logout</a></li>
+  {{else}}
+    <li><a href="/signin">Sign In</a></li>
+  {{/if}}
+</ul>

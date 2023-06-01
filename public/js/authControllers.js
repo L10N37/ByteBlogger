@@ -54,39 +54,6 @@ function resetInputFields() {
   });
 }
 
-// Function to update the header elements based on login status
-function updateHeader() {
-  const ifUserLoggedIn = true; // Set this to the appropriate value based on login status
-
-  const headerList = document.querySelector('.header-list');
-  headerList.innerHTML = '';
-
-  if (ifUserLoggedIn) {
-    const dashboardLink = document.createElement('li');
-    const dashboardLinkAnchor = document.createElement('a');
-    dashboardLinkAnchor.href = '/dashboard';
-    dashboardLinkAnchor.textContent = 'Dashboard';
-    dashboardLink.appendChild(dashboardLinkAnchor);
-
-    const logoutLink = document.createElement('li');
-    const logoutLinkAnchor = document.createElement('a');
-    logoutLinkAnchor.href = '/users/logout';
-    logoutLinkAnchor.textContent = 'Logout';
-    logoutLink.appendChild(logoutLinkAnchor);
-
-    headerList.appendChild(dashboardLink);
-    headerList.appendChild(logoutLink);
-  } else {
-    const signInLink = document.createElement('li');
-    const signInLinkAnchor = document.createElement('a');
-    signInLinkAnchor.href = '/signin';
-    signInLinkAnchor.textContent = 'Sign In';
-    signInLink.appendChild(signInLinkAnchor);
-
-    headerList.appendChild(signInLink);
-  }
-}
-
 // Event listener for form submission
 document.querySelector('form[action="/signup"]').addEventListener('submit', async event => {
   event.preventDefault();
@@ -126,7 +93,6 @@ document.querySelector('form[action="/signup"]').addEventListener('submit', asyn
     if (response.ok) {
       displaySuccessMessage(data.message);
       resetInputFields();
-      updateHeader();
     } else {
       displayErrorMessage(data.message);
     }
@@ -162,7 +128,7 @@ document.querySelector('form[action="/signin"]').addEventListener('submit', asyn
     if (response.ok) {
       displaySuccessMessage(data.message);
       resetInputFields();
-      updateHeader();
+      window.location.href = '/'; // Redirect to the homepage
     } else {
       displayErrorMessage(data.message);
     }

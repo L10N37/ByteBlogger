@@ -7,45 +7,34 @@
 </head>
 <body>
 <header>
-  <nav>
-    <ul class="header-list">
-      <li class="middle-item"><a href="/">Home</a></li>
-    </ul>
-  </nav>
+<nav>
+  <ul class="header-list">
+    <li><a href="/">Home</a></li>
+    {{#if isUserLoggedIn}}
+      <li><a href="/logout">Logout</a></li>
+      <li><a href="/logout">Home</a></li>
+    {{/if}}
+  </ul>
+</nav>
 </header>
 
 <main>
-  <h1>Sign In</h1>
 
-  <form action="/signin" method="POST">
-    <label for="signin-username">Username:</label>
-    <input type="text" id="signin-username" name="username" required>
+    {{> signinarea }}
 
-    <label for="signin-password">Password:</label>
-    <input type="password" id="signin-password" name="password" required>
+      <br>
+      <br>
 
-    <button type="submit">Sign In</button>
-  </form>
+    {{> signuparea }}
 
-  <br>
-  <br>
+      <br>
 
-  <h1>Sign Up</h1>
-  <form action="/signup" method="POST">
-    <label for="signup-username">Username:</label>
-    <input type="text" id="signup-username" name="username" required>
-
-    <label for="signup-password">Password:</label>
-    <input type="password" id="signup-password" name="password" required>
-
-    <button type="submit">Sign Up</button>
-    <p class="error-message"></p>
-    <p class="success-message"></p>
+    {{> success_error_messages }}
 
      <img class="cat-image" src="/assets/images/phoneKitty.png" alt="Cat Image">
 
   </form>
 </main>
-<script src="/js/signin.js"></script>
+<script src="/js/authControllers.js"></script>
 </body>
 </html>
