@@ -53,6 +53,9 @@ app.get('/signin', (req, res) => {
 const userController = require('./controllers/userController');
 app.post('/signup', userController.signUp);
 
+// Handle sign-in form submission
+app.post('/signin', userController.signIn);
+
 // Sync the session store
 sessionStore.sync();
 

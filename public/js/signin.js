@@ -101,3 +101,39 @@ document.querySelector('form[action="/signup"]').addEventListener('submit', asyn
     displayErrorMessage('Error signing up. Please try again.');
   }
 });
+
+// Event listener for sign-in form submission
+document.querySelector('form[action="/signin"]').addEventListener('submit', async event => {
+  event.preventDefault();
+
+  // Clear error and success messages
+  clearMessages();
+
+  // Get the form values
+  const username = document.querySelector('#signin-username').value;
+  const password = document.querySelector('#signin-password').value;
+
+  // Perform sign-in logic
+  try {
+    const response = await fetch('/signin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      displaySuccessMessage(data.message);
+      resetInputFields();
+    } else {
+      displayErrorMessage(data.message);
+    }
+  } catch (error) {
+    console.error('Error signing in:', error);
+    displayErrorMessage('Error signing in. Please try again.');
+  }
+});
+
