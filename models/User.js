@@ -5,12 +5,8 @@ const sequelize = require('../config/connection');
 class User extends Model {
   // Define a method to compare the provided password with the stored hashed password
   checkPassword(password) {
-    console.log('Comparing password:', password);
-    console.log('Stored hashed password:', this.password);
-
     const isPasswordMatch = bcrypt.compareSync(password, this.password);
     console.log('Password match result:', isPasswordMatch);
-
     return isPasswordMatch;
   }
 }
