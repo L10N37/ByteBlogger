@@ -49,7 +49,7 @@ const userController = {
   logout: (req, res) => {
     try {
       req.session.destroy();
-      res.status(200).json({ message: 'User logged out successfully' });
+      res.redirect('/home'); // Redirect to the homepage or login page
     } catch (error) {
       res.status(500).json({ message: 'Error logging out user', error: error.message });
     }

@@ -51,18 +51,26 @@ app.use((req, res, next) => {
   next();
 });
 
+// Render the home page when navigating to /home
 app.get('/home', (req, res) => {
   res.render('home', { isUserLoggedIn: res.locals.isUserLoggedIn });
 });
 
+// Render the dashboard page when navigating to /dashboard
+app.get('/dashboard', (req, res) => {
+  res.render('dashboard');
+});
 
 // Render the sign-in page when navigating to /signin
 app.get('/signin', (req, res) => {
   res.render('signin');
 });
 
-// Handle signup form submission
+// Handle logout request
 const userController = require('./controllers/userController');
+app.get('/users/logout', userController.logout);
+
+// Handle signup form submission
 app.post('/signup', userController.signUp);
 
 // Handle sign-in form submission
