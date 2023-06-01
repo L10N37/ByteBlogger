@@ -24,7 +24,7 @@ router.post('/users/signup', userController.signUp);
 router.post('/users/signin', userController.signIn);
 router.post('/users/logout', userController.logout);
 
-router.get('/', postController.getHomePage);
+router.get('/home', postController.getHomePage);
 router.post('/posts', postController.createPost);
 router.put('/posts/:id', postController.updatePost);
 router.delete('/posts/:id', postController.deletePost);

@@ -128,7 +128,7 @@ document.querySelector('form[action="/signin"]').addEventListener('submit', asyn
     if (response.ok) {
       displaySuccessMessage(data.message);
       resetInputFields();
-      window.location.href = '/'; // Redirect to the homepage
+      window.location.href = '/home'; // Redirect to the homepage
     } else {
       displayErrorMessage(data.message);
     }

@@ -14,9 +14,9 @@ const { Post, User, Comment } = require('../models');
           ],
           order: [['created_at', 'DESC']],
         });
-  
-        res.render('homepage', { posts });
-  
+    
+        res.render('home', { posts, isUserLoggedIn: req.session.isUserLoggedIn });
+    
       } catch (error) {
         console.error('Error retrieving posts:', error);
         res.status(500).json({ message: 'Error retrieving posts', error: error.message });

@@ -30,7 +30,7 @@ const hbs = exphbs.create({
   helpers: {
     formatDate,
   },
-  partialsDir: path.join(__dirname, 'views/partials') // Specify the path to your partials directory
+  partialsDir: path.join(__dirname, 'views', 'partials'), // Specify the correct path to your partials directory
 });
 
 app.engine('handlebars', hbs.engine);
@@ -44,7 +44,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 const routes = require('./controllers');
 app.use(routes);
 
-// render the sign-in page when navigating to /signin from the homepage
+// Middleware to pass variables to all pages
+app.use((req, res, next) => {
+  res.locals.isUserLoggedIn = req.session.isUserLoggedIn || false;
+  res.locals.isUser = req.session.user || false;
+  next();
+});
+
+app.get('/home', (req, res) => {
+  res.render('home', { isUserLoggedIn: res.locals.isUserLoggedIn });
+});
+
+
+// Render the sign-in page when navigating to /signin
 app.get('/signin', (req, res) => {
   res.render('signin');
 });
