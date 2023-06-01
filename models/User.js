@@ -5,7 +5,13 @@ const sequelize = require('../config/connection');
 class User extends Model {
   // Define a method to compare the provided password with the stored hashed password
   checkPassword(password) {
-    return bcrypt.compareSync(password, this.password);
+    console.log('Comparing password:', password);
+    console.log('Stored hashed password:', this.password);
+
+    const isPasswordMatch = bcrypt.compareSync(password, this.password);
+    console.log('Password match result:', isPasswordMatch);
+
+    return isPasswordMatch;
   }
 }
 
@@ -27,11 +33,15 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       set(value) {
-        const hashedPassword = bcrypt.hashSync(value, 10); // Hash the password with bcrypt
-        this.setDataValue('password', hashedPassword);
+        if (value && !value.startsWith('$2b$')) {
+          // Hash the password only if it is not already hashed
+          const hashedPassword = bcrypt.hashSync(value, 10);
+          this.setDataValue('password', hashedPassword);
+        } else {
+          this.setDataValue('password', value);
+        }
       },
     },
-    // Add any additional fields required
   },
   {
     sequelize,

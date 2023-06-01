@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const { User } = require('../models');
 
 const userController = {
+
   // Sign up functionality
   signUp: async (req, res) => {
     try {
@@ -10,15 +11,16 @@ const userController = {
       if (usernameExists) {
         return res.status(409).json({ message: 'Username already exists. Please choose a different username.' });
       }
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const user = await User.create({ username, password: hashedPassword });
+      const user = User.build({ username });
+      user.password = password; // Set the password explicitly
+      await user.save({ hooks: false });
       req.session.userId = user.id;
       res.status(201).json({ message: 'User created successfully', user });
     } catch (error) {
       res.status(500).json({ message: 'Error signing up user', error: error.message });
     }
   },
-
+  
   // Sign in functionality
   signIn: async (req, res) => {
     try {
