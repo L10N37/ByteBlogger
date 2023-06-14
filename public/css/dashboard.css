@@ -45,6 +45,15 @@
     padding: 5px;
     margin-bottom: 10px;
     width: 100%;
+    height: 400px;
+  }
+  
+  input.editBlogTitleInput[type="text"] {
+    height: 16px;
+  }
+
+  input.addNewPostTitleInput{
+    height: 16px;
   }
   
   input[type="text"]::placeholder,

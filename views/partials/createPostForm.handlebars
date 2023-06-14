@@ -1,6 +1,6 @@
 <h2>Add New Post</h2>
 <form action="/posts" method="POST">
-  <input type="text" name="title" placeholder="Title" required>
+  <input class = 'addNewPostTitleInput' type="text" name="title" placeholder="Title" required>
   <textarea name="content" placeholder="Content" required></textarea>
   <input type="hidden" name="user_id" value="{{userId}}">
   <button type="submit">Create Post</button>
