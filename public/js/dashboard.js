@@ -34,23 +34,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // Update post
   document.addEventListener('DOMContentLoaded', () => {
     const editButtons = document.querySelectorAll('.edit-button');
-  
+
     editButtons.forEach((button) => {
       button.addEventListener('click', (event) => {
         event.preventDefault();
-  
+
         const postId = button.getAttribute('data-post-id');
         const editForm = document.getElementById(`edit-form-${postId}`);
-  
-        if (editForm) {
+
+        if (editForm && !editForm.querySelector('.cancel-button')) {
           const cancelButton = document.createElement('button');
           cancelButton.innerText = 'Cancel';
           cancelButton.classList.add('cancel-button');
-  
+
           editForm.appendChild(cancelButton);
           button.style.display = 'none';
           editForm.style.display = 'block';
-  
+
           cancelButton.addEventListener('click', () => {
             editForm.removeChild(cancelButton);
             button.style.display = 'inline';
@@ -61,17 +61,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-
   // show add new post form
-function toggleAddNewPostForm() {
-  const addNewPostForm = document.getElementById('addNewPostForm');
-  const addNewPostButton = document.getElementById('addNewPostButton');
+  function toggleAddNewPostForm() {
+    const addNewPostForm = document.getElementById('addNewPostForm');
+    const addNewPostButton = document.getElementById('addNewPostButton');
 
-  if (addNewPostForm.style.display === 'none') {
-    addNewPostForm.style.display = 'block';
-    addNewPostButton.textContent = 'Hide Blog Post Form';
-  } else {
-    addNewPostForm.style.display = 'none';
-    addNewPostButton.textContent = 'Show Blog Post Form';
+    if (addNewPostForm.style.display === 'none') {
+      addNewPostForm.style.display = 'block';
+      addNewPostButton.textContent = 'Hide Blog Post Form';
+    } else {
+      addNewPostForm.style.display = 'none';
+      addNewPostButton.textContent = 'Show Blog Post Form';
+    }
   }
-}
