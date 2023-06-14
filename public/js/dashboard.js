@@ -43,7 +43,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const editForm = document.getElementById(`edit-form-${postId}`);
   
         if (editForm) {
+          const cancelButton = document.createElement('button');
+          cancelButton.innerText = 'Cancel';
+          cancelButton.classList.add('cancel-button');
+  
+          editForm.appendChild(cancelButton);
+          button.style.display = 'none';
           editForm.style.display = 'block';
+  
+          cancelButton.addEventListener('click', () => {
+            editForm.removeChild(cancelButton);
+            button.style.display = 'inline';
+            editForm.style.display = 'none';
+          });
         }
       });
     });

@@ -48,6 +48,10 @@
     height: 400px;
   }
   
+  button.cancel-button {
+    margin-top: 10px;
+  }
+
   input.editBlogTitleInput[type="text"] {
     height: 16px;
   }
