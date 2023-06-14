@@ -31,16 +31,7 @@ const hbs = exphbs.create({
     formatDate,
   },
   partialsDir: path.join(__dirname, 'views', 'partials'),
-  // Pass additional variables to be accessible in all templates using 'main' layout
-  runtimeOptions: {
-    data: {
-      isUserLoggedIn: req => req.session.isUserLoggedIn || false,
-      isUser: req => req.session.user || false,
-      userId: req => req.session.userId || null, // Add the userId variable
-    },
-  },
 });
-
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');

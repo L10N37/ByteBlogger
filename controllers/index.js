@@ -23,6 +23,7 @@ const commentController = require('./commentController');
 router.use((req, res, next) => {
   res.locals.isUserLoggedIn = req.session.isUserLoggedIn || false;
   res.locals.isUser = req.session.user || false;
+  res.locals.userId = req.session.userId || false;
   next();
 });
 

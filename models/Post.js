@@ -21,8 +21,7 @@ Post.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    // Add any additional fields required
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {

@@ -29,8 +29,15 @@ const { Post, User, Comment } = require('../models');
       // Get post input from the request body
       const { title, content } = req.body;
 
+      // Get the userId from the session
+      const userId = req.session.userId;
+
       // Create a new post in the database
-      await Post.create({ title, content, userId: req.session.userId });
+      await Post.create({
+        title,
+        content,
+        userId,
+      });
 
       // Redirect to the dashboard
       res.redirect('/dashboard');
