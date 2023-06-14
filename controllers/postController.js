@@ -1,6 +1,32 @@
 const { Post, User, Comment } = require('../models');
 
   const postController = {
+
+    getDashboard: async (req, res) => {
+      try {
+        // Get the user ID from the session
+        const userId = req.session.userId;
+    
+        // Fetch the user's posts from the database
+        const posts = await Post.findAll({
+          where: { userId },
+          include: [
+            {
+              model: User,
+              attributes: ['username'],
+              as: 'user',
+            },
+          ],
+        });
+    
+        // Render the dashboard view with the user's posts                                // posts.map(post => post.get({ plain: true })),
+        res.render('dashboard', { posts: posts.map(post => post.get({ plain: true })) }); // convert the Sequelize model instances into plain JavaScript objects for handlebar compatibility
+      } catch (error) {
+        console.error('Error retrieving posts:', error);
+        res.status(500).json({ message: 'Error retrieving posts', error: error.message });
+      }
+    },
+    
     getHomePage: async (req, res) => {
       try {
         const posts = await Post.findAll({
@@ -29,15 +55,8 @@ const { Post, User, Comment } = require('../models');
       // Get post input from the request body
       const { title, content } = req.body;
 
-      // Get the userId from the session
-      const userId = req.session.userId;
-
       // Create a new post in the database
-      await Post.create({
-        title,
-        content,
-        userId,
-      });
+      await Post.create({ title, content, userId: req.session.userId });
 
       // Redirect to the dashboard
       res.redirect('/dashboard');

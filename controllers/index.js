@@ -23,11 +23,13 @@ const commentController = require('./commentController');
 router.use((req, res, next) => {
   res.locals.isUserLoggedIn = req.session.isUserLoggedIn || false;
   res.locals.isUser = req.session.user || false;
-  res.locals.userId = req.session.userId || false;
   next();
 });
 
-// Define your routes
+// Route definitions
+
+// Render the dashboard page with posts by the logged-in user
+router.get('/dashboard', postController.getDashboard);
 
 // Render the homepage when navigating to /home
 router.get('/home', postController.getHomePage);

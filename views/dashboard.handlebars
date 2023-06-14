@@ -1,19 +1,18 @@
-{{!-- Display blog posts --}}
+{{!-- Display blog posts by logged in user --}}
 <head>
-    <script src="/js/dashboard.js"></script>
-    <link rel="stylesheet" href="/css/dashboard.css">
+  <script src="/js/dashboard.js"></script>
+  <link rel="stylesheet" href="/css/dashboard.css">
 </head>
+
 {{#if posts}}
   <h2>My Blog Posts</h2>
   <ul>
     {{#each posts}}
       <li>
-        <h3>{{title}}</h3>
-        <p>{{content}}</p>
-        <p>Created by: {{user.username}}</p>
-        <a href="/posts/{{id}}">View</a>
-        <a href="/posts/{{id}}/edit">Edit</a>
-        <form action="/posts/{{id}}/delete" method="POST">
+        <h3>Blog Title: {{this.title}}</h3>
+        <a href="/posts/{{this.id}}">View</a>
+        <a href="/posts/{{this.id}}/edit">Edit</a>
+        <form action="/posts/{{this.id}}/delete" method="POST">
           <button type="submit">Delete</button>
         </form>
       </li>
@@ -22,5 +21,6 @@
 {{else}}
   <p>No posts found.</p>
 {{/if}}
+
 
 {{> createPostForm}}
