@@ -105,8 +105,8 @@ const { Post, User, Comment } = require('../models');
       // Delete the post from the database
       await post.destroy();
 
-      // Redirect to the dashboard
-      res.redirect('/dashboard');
+      // Send a response indicating success
+      res.sendStatus(200);
     } catch (error) {
       res.status(500).json({ message: 'Error deleting post', error: error.message });
     }
