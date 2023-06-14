@@ -11,7 +11,7 @@
       <a href="/posts/{{id}}">View</a>
       <a href="#" class="edit-button" data-post-id="{{id}}">Edit</a>
       <form action="/posts/{{id}}/delete" method="POST" class="delete-form">
-        <button type="submit" class="delete-button">Delete</button>
+        <button type="submit" class="delete-button" data-post-id="{{id}}">Delete</button>
       </form>
       <div class="edit-form" id="edit-form-{{id}}" style="display: none;">
         <form action="/posts/{{id}}/update" method="POST">
