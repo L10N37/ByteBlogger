@@ -60,4 +60,18 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
-  
+
+
+  // show add new post form
+function toggleAddNewPostForm() {
+  const addNewPostForm = document.getElementById('addNewPostForm');
+  const addNewPostButton = document.getElementById('addNewPostButton');
+
+  if (addNewPostForm.style.display === 'none') {
+    addNewPostForm.style.display = 'block';
+    addNewPostButton.textContent = 'Hide Blog Post Form';
+  } else {
+    addNewPostForm.style.display = 'none';
+    addNewPostButton.textContent = 'Show Blog Post Form';
+  }
+}
