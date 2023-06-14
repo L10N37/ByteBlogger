@@ -1,3 +1,4 @@
+// delete a post in dashboard
 document.addEventListener('DOMContentLoaded', () => {
     const deleteButtons = document.querySelectorAll('.delete-button');
   
@@ -25,6 +26,24 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error(error);
             alert('An error occurred while deleting the post');
           }
+        }
+      });
+    });
+  });
+
+  // Update post
+  document.addEventListener('DOMContentLoaded', () => {
+    const editButtons = document.querySelectorAll('.edit-button');
+  
+    editButtons.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+  
+        const postId = button.getAttribute('data-post-id');
+        const editForm = document.getElementById(`edit-form-${postId}`);
+  
+        if (editForm) {
+          editForm.style.display = 'block';
         }
       });
     });

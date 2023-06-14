@@ -1,26 +1,27 @@
 {{!-- Display blog posts by logged in user --}}
-{{!-- Display blog posts by logged in user --}}
 <head>
-    <script src="/js/dashboard.js"></script>
-    <link rel="stylesheet" href="/css/dashboard.css">
+  <script src="/js/dashboard.js"></script>
+  <link rel="stylesheet" href="/css/dashboard.css">
 </head>
-{{#if posts}}
-  <h2>My Blog Posts</h2>
-  <ul>
-    {{#each posts}}
-      <li>
-        <h3>{{title}}</h3>
-        <a href="/posts/{{id}}">View</a>
-        <a href="/posts/{{id}}/edit">Edit</a>
-        <form action="/posts/{{id}}/delete" method="POST" class="delete-form">
-          <button type="submit" class="delete-button" data-post-id="{{id}}">Delete</button>
+<h2>My Blog Posts</h2>
+<ul>
+  {{#each posts}}
+    <li>
+      <h3>{{title}}</h3>
+      <a href="/posts/{{id}}">View</a>
+      <a href="#" class="edit-button" data-post-id="{{id}}">Edit</a>
+      <form action="/posts/{{id}}/delete" method="POST" class="delete-form">
+        <button type="submit" class="delete-button">Delete</button>
+      </form>
+      <div class="edit-form" id="edit-form-{{id}}" style="display: none;">
+        <form action="/posts/{{id}}/update" method="POST">
+          <input type="text" name="title" value="{{title}}">
+          <textarea name="content">{{content}}</textarea>
+          <button type="submit">Update</button>
         </form>
-      </li>
-    {{/each}}
-  </ul>
-{{else}}
-  <p>No posts found.</p>
-{{/if}}
-
+      </div>
+    </li>
+  {{/each}}
+</ul>
 
 {{> createPostForm}}

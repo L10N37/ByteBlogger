@@ -2,6 +2,22 @@ const { Post, User, Comment } = require('../models');
 
   const postController = {
 
+  // Controller method to render the edit post form
+  getEditPostForm: async (req, res) => {
+    try {
+      // Get the post ID from the request parameters
+      const postId = req.params.id;
+
+      // Fetch the post data from the database
+      const post = await Post.findByPk(postId);
+
+      // Render the edit post form partial and pass the post data
+      res.render('editPostForm', { layout: false, post });
+    } catch (error) {
+      res.status(500).json({ message: 'Error retrieving post', error: error.message });
+    }
+  },
+
     getDashboard: async (req, res) => {
       try {
         // Get the user ID from the session

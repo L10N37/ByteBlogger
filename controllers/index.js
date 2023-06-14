@@ -26,7 +26,10 @@ router.use((req, res, next) => {
   next();
 });
 
-// Route definitions
+/*  Route definitions */
+
+// Edit a post
+router.get('/posts/:id/edit', postController.getEditPostForm);
 
 // Render the dashboard page with posts by the logged-in user
 router.get('/dashboard', postController.getDashboard);
@@ -47,7 +50,7 @@ router.get('/users/logout', userController.logout);
 router.post('/posts', postController.createPost);
 
 // Update a post
-router.put('/posts/:id', postController.updatePost);
+router.post('/posts/:id/update', postController.updatePost);
 
 // Delete a post
 router.delete('/posts/:id', postController.deletePost);
