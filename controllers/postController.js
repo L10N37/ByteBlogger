@@ -18,7 +18,7 @@ const { Post, User, Comment } = require('../models');
         return res.status(404).json({ message: 'Post not found' });
       }
 
-      console.log(post);
+      //console.log(post);
 
       res.render('post', { post: post.get({ plain: true }) });
 
@@ -71,25 +71,26 @@ const { Post, User, Comment } = require('../models');
     getHomePage: async (req, res) => {
       try {
         const posts = await Post.findAll({
-          attributes: ['title', 'content', 'created_at'],
+          attributes: ['id', 'title', 'content', 'created_at'],
           include: [
             {
               model: User,
               attributes: ['username'],
-              as: 'user', // Change the alias to 'user'
+              as: 'user',
             },
           ],
           order: [['created_at', 'DESC']],
         });
     
         res.render('home', { posts, isUserLoggedIn: req.session.isUserLoggedIn });
+        console.log(posts);
     
       } catch (error) {
         console.error('Error retrieving posts:', error);
         res.status(500).json({ message: 'Error retrieving posts', error: error.message });
       }
-    },
-    
+    },    
+  
   // Create a new post
   createPost: async (req, res) => {
     try {
