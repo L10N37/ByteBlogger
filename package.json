@@ -5,8 +5,7 @@
     "createdb": "node scripts/create-database.js",
     "createtables": "node scripts/create-tables.js",
     "start": "node index.js",
-    "seed": "node scripts/seed.js",
-    "seedAPI": "node scripts/seedAPI.js"
+    "seed": "node scripts/seed.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",

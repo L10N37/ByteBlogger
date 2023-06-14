@@ -20,7 +20,7 @@ app.use(
     saveUninitialized: false,
     store: sessionStore,
     cookie: {
-      maxAge: 3600000, // Set the expiration time in milliseconds (1 hour here)
+      maxAge: 3600000, // Set the expiration time in milliseconds (1 hour here), need to log back in when this limit g
     },
   })
 );
@@ -30,15 +30,17 @@ const hbs = exphbs.create({
   helpers: {
     formatDate,
   },
-  partialsDir: path.join(__dirname, 'views', 'partials'), // Specify the correct path to your partials directory
+  partialsDir: path.join(__dirname, 'views', 'partials'),
   // Pass additional variables to be accessible in all templates using 'main' layout
   runtimeOptions: {
     data: {
       isUserLoggedIn: req => req.session.isUserLoggedIn || false,
       isUser: req => req.session.user || false,
+      userId: req => req.session.userId || null, // Add the userId variable
     },
   },
 });
+
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');

@@ -48,15 +48,17 @@ const userController = {
     }
   },
 
-  // Logout functionality
-  logout: (req, res) => {
-    try {
-      req.session.destroy();
-      res.redirect('/home'); // Redirect to the homepage or login page
-    } catch (error) {
-      res.status(500).json({ message: 'Error logging out user', error: error.message });
-    }
-  },
+// Logout functionality
+logout: (req, res) => {
+  try {
+    req.session.destroy(() => {
+      res.clearCookie('connect.sid'); // Clear the session cookie
+      res.redirect('/signin'); // Redirect to the homepage or login page
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Error logging out user', error: error.message });
+  }
+},
 
   // Utility function to check if a username already exists
   checkUsername: async (username) => {
