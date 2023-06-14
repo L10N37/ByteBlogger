@@ -7,6 +7,30 @@
     margin: 0;
   }
 
+  h2{
+    color: yellow;
+    font-size: 28px;
+    text-decoration: underline;
+
+  }
+
+  p{
+    color: white;
+    font-size: 22px;
+  }
+  
+  h3{
+    color: orange;
+    font-size: 25px;
+    text-decoration: underline;
+  }
+
+  li{
+    font-weight: bolder;
+    font-size: 22px;
+    color: white;
+  }
+
   pre {
     background-color: #000;
     color: #0f0;

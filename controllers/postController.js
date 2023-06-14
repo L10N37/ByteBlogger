@@ -2,6 +2,28 @@ const { Post, User, Comment } = require('../models');
 
   const postController = {
 
+ // View a post
+ viewPost: async (req, res) => {
+  try {
+    // Find the post in the database
+    const post = await Post.findByPk(req.params.id, {
+      include: [
+        { model: User, attributes: ['username'], as: 'user' },
+        { model: Comment, include: [User] },
+      ],
+    });
+
+    // If the post doesn't exist, return an error
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    console.log(post);
+    res.render('post', { posts: posts.map(post => post.get({ plain: true })) });
+  } catch (error) {
+    res.status(500).json({ message: 'Error retrieving post details', error: error.message });
+  }
+},
+
   // Controller method to render the edit post form
   getEditPostForm: async (req, res) => {
     try {
@@ -127,28 +149,6 @@ const { Post, User, Comment } = require('../models');
       res.status(500).json({ message: 'Error deleting post', error: error.message });
     }
   },
-
-  viewPost: async (req, res) => {
-    try {
-      // Find the post in the database
-      const post = await Post.findByPk(req.params.id, {
-        include: [
-          { model: User, attributes: ['username'], as: 'user' },
-          { model: Comment, include: [User] },
-        ],
-      });
-  
-      // If the post doesn't exist, return an error
-      if (!post) {
-        return res.status(404).json({ message: 'Post not found' });
-      }
-  
-      // Render the post details view with the retrieved post
-      res.render('post', { post });
-    } catch (error) {
-      res.status(500).json({ message: 'Error retrieving post details', error: error.message });
-    }
-  },  
 
 // Leave a comment on a post
 leaveComment: async (req, res) => {

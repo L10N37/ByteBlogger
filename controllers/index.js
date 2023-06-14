@@ -28,6 +28,9 @@ router.use((req, res, next) => {
 
 /*  Route definitions */
 
+// View a post
+router.get('/posts/:id', postController.viewPost);
+
 // Edit a post
 router.get('/posts/:id/edit', postController.getEditPostForm);
 

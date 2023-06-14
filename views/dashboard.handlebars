@@ -8,14 +8,14 @@
   {{#each posts}}
     <li>
       <h3>{{title}}</h3>
-      <a href="/posts/{{id}}">View</a>
-      <a href="#" class="edit-button" data-post-id="{{id}}">Edit</a>
-      <form action="/posts/{{id}}/delete" method="POST" class="delete-form">
-        <button type="submit" class="delete-button" data-post-id="{{id}}">Delete</button>
+      <a href="/posts/{{this.id}}">View</a>
+      <a href="#" class="edit-button" data-post-id="{{this.id}}">Edit</a>
+      <form action="/posts/{{this.id}}/delete" method="POST" class="delete-form">
+        <button type="submit" class="delete-button" data-post-id="{{this.id}}">Delete</button>
       </form>
-      <div class="edit-form" id="edit-form-{{id}}" style="display: none;">
-        <form action="/posts/{{id}}/update" method="POST">
-          <input type="text" name="title" value="{{title}}">
+      <div class="edit-form" id="edit-form-{{this.id}}" style="display: none;">
+        <form action="/posts/{{this.id}}/update" method="POST">
+          <input type="text" name="title" value="{{this.title}}">
           <textarea name="content">{{content}}</textarea>
           <button type="submit">Update</button>
         </form>
