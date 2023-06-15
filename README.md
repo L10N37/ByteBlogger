@@ -14,9 +14,10 @@
 
 - [Description](#description)
 - [Features](#features)
-- [Packages-Used](#Packages-Used)
+- [Packages Used](#packages-used)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Live deployment using Render](#live-deployment-using-render)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
@@ -66,7 +67,9 @@ Other Features:
 - User-friendly interface
 
 
-## Packages-Used
+<a name="packages-used"></a>
+## Packages Used
+
 <p>The CMS-Style Blog Site project utilises the following packages:</p>
 <ul>
   <li><a href="https://www.npmjs.com/package/bcrypt">bcrypt</a> (version 5.1.0 or later)</li>
@@ -104,6 +107,27 @@ To run the CMS-Style Blog Site locally, follow these steps:
 - Once logged in, you can create new blog posts, view, update, or delete existing posts.
 - Click on individual blog posts to view their details, leave comments, or see existing comments.
 - Enjoy managing your blog content and interacting with other users!
+
+<a name="live-deployment-using-render"></a>
+## Live deployment using Render
+
+To deploy a MySQL database to Render using Clever Cloud, the following steps were taken:
+
+-The local database folder, located at C:\ProgramData\MySQL\MySQL Server 8.0, was compressed into a ZIP file. This folder contains the necessary database files and configurations.
+
+-The compressed database folder was then imported directly into the MySQL service provided by Clever Cloud. This step allowed for the seamless transfer of the database without the need to manually recreate tables or use the graphical online interface.
+
+-The next step involved copying the environment variables from the Clever Cloud service to Render's environment variables section. These environment variables contain important configuration details such as host, port, username, password, and database name. There are multiple approaches you can use. I used a secret credentials file formatted like the '.env' file for local use. The credential names just had to be changed to suit the application.
+
+-By configuring the environment variables in Render, the application was able to successfully connect to the MySQL database hosted on Clever Cloud.
+
+This approach streamlined the deployment process by avoiding the manual creation of tables and allowed for the efficient transfer of the database from the local environment to the cloud-based infrastructure.
+
+<a name="live-application"></a>
+## Live Application
+
+[**Visit the Live Application**](https://byteblogger.onrender.com/home)
+
 
 
 ## Contributing
