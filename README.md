@@ -1,7 +1,9 @@
 <h1 align="center">CMS-Style Blog Site</h1>
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 <p align="center">
-  <img src="https://your-image-url.com" alt="Project Screenshot">
+  <img src="assets/images/demo.gif" alt="Project Screenshot">
 </p>
 
 <p align="center">
@@ -12,11 +14,13 @@
 
 - [Description](#description)
 - [Features](#features)
+- [Packages-Used](#Packages-Used)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
+
 
 ## Description
 
@@ -24,17 +28,45 @@ CMS-Style Blog Site is a full-stack web application built with HTML, CSS, JavaSc
 
 The application provides a homepage that displays existing blog posts (if any) and offers navigation links for easy access to the homepage, user dashboard, and login/logout functionality. Users can sign up with a unique username and password, and once logged in, they have the ability to create, update, and delete their own blog posts. Users can also view individual blog posts, leave comments, and see comments from other users.
 
+
 ## Features
 
+User Authentication:
+
+- Signup:
+  - Collect user details (username, email, password) on the signup page.
+  - Implement password complexity requirements, such as having at least one uppercase letter and special character, using regex validation.
+    - Show an alert message to the user if the password does not meet the complexity requirements.
+  - Hash the user's password using bcrypt before storing it in the database.
+    - Bcrypt is a popular hashing algorithm that adds a layer of security by encrypting the passwords.
+
+- Signin:
+  - Validate the user's credentials (username/email and password) entered on the signin page.
+  - Retrieve the hashed password from the database for the corresponding user.
+  - Use bcrypt to compare the provided password with the stored hashed password.
+    - If the passwords match, allow the user to proceed to the dashboard.
+    - If the passwords don't match, show an error message indicating incorrect credentials.
+
+- Logout:
+  - Provide a logout button or link in the user dashboard to allow users to sign out of their accounts.
+  - When the user clicks on the logout button, invalidate the session or token associated with their login, ensuring they can no longer access protected routes until they sign in again.
+
+- Existing Account Check:
+  - Before allowing a new user to sign up, check if the provided username or email already exists in the database.
+    - Show an alert message to the user if the username or email is already taken.
+    - Ensure the check is case-insensitive to prevent duplicates.
+
+Other Features:
+
 - Homepage displaying existing blog posts
-- User authentication (signup, signin, logout) with password hashing using bcrypt
 - User dashboard to manage blog posts
 - Create, update, and delete blog posts
 - View individual blog posts with comments
 - Leave comments on blog posts
 - User-friendly interface
 
-## Packages Used
+
+## Packages-Used
 <p>The CMS-Style Blog Site project utilises the following packages:</p>
 <ul>
   <li><a href="https://www.npmjs.com/package/bcrypt">bcrypt</a> (version 5.1.0 or later)</li>
@@ -47,6 +79,7 @@ The application provides a homepage that displays existing blog posts (if any) a
   <li><a href="https://www.npmjs.com/package/mysql2">mysql2</a> (version 3.3.3 or later)</li>
   <li><a href="https://www.npmjs.com/package/sequelize">sequelize</a> (version 6.31.1 or later)</li>
 </ul>
+
 
 ## Installation
 
@@ -72,6 +105,7 @@ To run the CMS-Style Blog Site locally, follow these steps:
 - Click on individual blog posts to view their details, leave comments, or see existing comments.
 - Enjoy managing your blog content and interacting with other users!
 
+
 ## Contributing
 
 Contributions are welcome! If you would like to contribute to the CMS-Style Blog Site, please follow these steps:
@@ -82,9 +116,12 @@ Contributions are welcome! If you would like to contribute to the CMS-Style Blog
 4. Push to the branch: `git push origin feature/your-feature`
 5. Open a pull request.
 
+
 ## License
 
-This project is licensed under the [License Name] - see the `LICENSE` file for details.
+
+This project is licensed under the [MIT LICENSE](LICENSE) - see the `LICENSE` file for details.
+
 
 ## Contact
 
