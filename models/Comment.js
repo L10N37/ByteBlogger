@@ -50,4 +50,14 @@ Comment.init(
   }
 );
 
+  // Comment Model
+  Comment.belongsTo(User, { foreignKey: 'user_id' });
+  Comment.belongsTo(Post, { foreignKey: 'post_id' });
+
+  // User Model
+  User.hasMany(Comment, { foreignKey: 'user_id' });
+
+  // Post Model
+  Post.hasMany(Comment, { foreignKey: 'post_id' });
+
 module.exports = Comment;

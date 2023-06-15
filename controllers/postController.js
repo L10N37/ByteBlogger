@@ -153,22 +153,6 @@ const { Post, User, Comment } = require('../models');
       res.status(500).json({ message: 'Error deleting post', error: error.message });
     }
   },
-
-// Leave a comment on a post
-leaveComment: async (req, res) => {
-  try {
-    // Get comment input from the request body
-    const { content } = req.body;
-
-    // Create a new comment in the database
-    await Comment.create({ content, postId: req.params.id, userId: req.session.userId });
-
-    // Redirect to the post details
-    res.redirect(`/posts/${req.params.id}`);
-  } catch (error) {
-    res.status(500).json({ message: 'Error leaving comment', error: error.message });
-  }
-},
 };
 
 module.exports = postController;

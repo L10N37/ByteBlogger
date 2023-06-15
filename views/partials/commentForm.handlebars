@@ -3,13 +3,13 @@
 <br>
 
 {{#if isUserLoggedIn}}
-  <form action="/comments" method="POST" class="comment-form">
+  <form action="/comments/{{post.id}}" method="POST" class="comment-form">
     <input type="hidden" name="post_id" value="{{post.id}}">
     <p id="commentAsUserName">
       <span class="commenting-as-text">Commenting As:</span> {{isUser}}
     </p>
     <label for="comment" class="comment-label">Leave a Comment:</label>
-    <textarea name="comment" id="comment" class="comment-text-area" required></textarea>
+    <textarea name="comment_text" id="comment" class="comment-text-area" required></textarea>
     <button type="submit">Submit</button>
   </form>
 {{/if}}

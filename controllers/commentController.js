@@ -5,16 +5,16 @@ const commentController = {
   leaveComment: async (req, res) => {
     try {
       // Get comment input from the request body
-      const { content } = req.body;
+      const { comment_text } = req.body;
 
       // Create a new comment in the database
       const comment = await Comment.create({
-        content,
-        postId: req.params.id,
-        userId: req.session.userId,
+        comment_text,
+        post_id: req.params.id,
+        user_id: req.session.userId,
       });
 
-      // Redirect to the post details
+      // Refresh the page to show the updated comments
       res.redirect(`/posts/${req.params.id}`);
     } catch (error) {
       res.status(500).json({ message: 'Error leaving comment', error: error.message });
