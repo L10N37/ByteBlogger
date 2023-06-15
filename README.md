@@ -127,6 +127,5 @@ This project is licensed under the [MIT LICENSE](LICENSE) - see the `LICENSE` fi
 
 For any inquiries or questions, please contact:
 
-- Your Name:
   - Email: vajskids@gmail.com
   - GitHub: [L10N37](https://github.com/L10N37)
