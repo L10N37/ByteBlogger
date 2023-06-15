@@ -1,3 +1,17 @@
+.comment-text-area {
+  height: 50px;
+}
+
+#commentAsUserName{
+font-style: italic;
+color: pink;
+}
+
+p .commenting-as-text {
+  font-weight: bold;
+  color: lightskyblue;
+}
+
 h2 {
   color: #00ff00;
   font-size: 20px;

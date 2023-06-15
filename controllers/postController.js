@@ -83,7 +83,7 @@ const { Post, User, Comment } = require('../models');
         });
     
         res.render('home', { posts, isUserLoggedIn: req.session.isUserLoggedIn });
-        console.log(posts);
+        //console.log(posts);
     
       } catch (error) {
         console.error('Error retrieving posts:', error);
