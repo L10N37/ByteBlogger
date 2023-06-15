@@ -1,5 +1,10 @@
+.comment-label {
+  font-size: 20px;
+}
+
 .comment-text-area {
   height: 50px;
+  font-size: 22px;
 }
 
 #commentAsUserName{
