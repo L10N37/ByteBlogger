@@ -86,10 +86,10 @@ Other Features:
 To run the CMS-Style Blog Site locally, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/L10N37/ByteBlogger.git`
-2. Navigate to the project directory: `cd your-repo`
+2. Navigate to the project directory: `cd ByteBlogger`
 3. Install the dependencies: `npm install`
 4. Set up the database: You need to fill out the `.env` file with your MySQL credentials. There is an example `.env` file as reference. After that, you are able to run the following commands:
-   - Create the database: `npm run create-database`
+   - Create the database: `npm run createdb`
    - Create the tables: `npm run createtables`
    - Seed the database with fake data (optional): `npm run seed`
 5. Start the application: `npm start`
