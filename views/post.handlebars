@@ -2,7 +2,20 @@
 <br>
 <br>
 <br>
-<h2>{{post.title}}</h2>
-{{{post.content}}}
 
-{{> commentForm }}
+<div class="post">
+  <h2>{{ post.title }}</h2>
+  <p>{{ post.content }}</p>
+  <p>Author: {{ post.user.username }}</p>
+  <p>Created at: {{ formatDate post.created_at }}</p>
+  {{> commentForm }}
+</div>
+
+
+{{#each post.comments}}
+  <div class="comment">
+    <h3>Comment by: {{ this.user.username }}</h3>
+    <p>{{ this.comment_text }}</p>
+    <p>Posted at: {{ formatDate this.created_at }}</p>
+  </div>
+{{/each}}

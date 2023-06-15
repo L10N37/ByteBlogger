@@ -69,10 +69,25 @@ router.get('/users/logout', userController.logout);
 router.post('/comments/:id', commentController.leaveComment);
 //--------------------------------------------------------------
 
-/*      Rendering of pages      */
+/*      Rendering      */
 // Render the sign-in page
 router.get('/signin', (req, res) => {
   res.render('signin');
+});
+
+// Render the post page with associated comments
+router.get('/posts/:id', async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const post = await Post.findByPk(postId, {
+      include: [{ model: Comment, include: [User] }],
+    });
+
+    res.render('post', { post });
+  } catch (error) {
+    console.error('Error retrieving post and comments:', error);
+    res.sendStatus(500);
+  }
 });
 
 // Render the dashboard page

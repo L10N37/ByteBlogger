@@ -20,7 +20,7 @@ app.use(
     saveUninitialized: false,
     store: sessionStore,
     cookie: {
-      maxAge: 3600000, // Set the expiration time in milliseconds (1 hour here), need to log back in when this limit g
+      maxAge: 3600000, // Set the expiration time in milliseconds (1 hour here), need to log back in when this limit is reached
     },
   })
 );
