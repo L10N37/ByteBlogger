@@ -7,7 +7,7 @@ a:visited {
 {{#each posts}}
   <div class="post">
     <h2><a href="/posts/{{this.dataValues.id}}">{{this.dataValues.title}}</a></h2>
-    <p>{{this.dataValues.content}}</p>
+    <p>{{{this.dataValues.content}}}</p>
     <p>Author: {{this.dataValues.user.dataValues.username}}</p>
     <p>Created at: {{formatDate this.dataValues.created_at}}</p>
   </div>
