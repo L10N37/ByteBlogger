@@ -25,7 +25,7 @@
 
 ## Description
 
-CMS-Style Blog Site is a full-stack web application built with HTML, CSS, JavaScript, and [insert any additional technologies/frameworks used]. It follows the Model-View-Controller (MVC) architectural pattern and utilizes a CMS (Content Management System) approach for managing blog posts and user authentication.
+CMS-Style Blog Site is a full-stack web application built with HTML, CSS, JavaScript and the NPM packages listed further down in the read me. It follows the Model-View-Controller (MVC) architectural pattern and utilizes a CMS (Content Management System) approach for managing blog posts and user authentication.
 
 The application provides a homepage that displays existing blog posts (if any) and offers navigation links for easy access to the homepage, user dashboard, and login/logout functionality. Users can sign up with a unique username and password, and once logged in, they have the ability to create, update, and delete their own blog posts. Users can also view individual blog posts, leave comments, and see comments from other users.
 
