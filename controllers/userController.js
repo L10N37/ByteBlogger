@@ -1,15 +1,38 @@
 const { User } = require('../models');
 
+// Function to validate the password field, set to at least one capital letter and at least one special character (including exclamation mark)
+function validatePassword(password) {
+  const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+  if (!regex.test(password)) {
+    return {
+      isValid: false,
+      message: 'Password must contain at least 8 characters, one capital letter, and one special character.',
+    };
+  }
+  return {
+    isValid: true,
+  };
+}
+
 const userController = {
 
   // Sign up functionality
   signUp: async (req, res) => {
     try {
       const { username, password } = req.body;
-      const usernameExists = await userController.checkUsername(username);
-      if (usernameExists) {
+
+      // Check if the username already exists in the database
+      const existingUser = await User.findOne({ where: { username } });
+      if (existingUser) {
         return res.status(409).json({ message: 'Username already exists. Please choose a different username.' });
       }
+
+      // Validate password using the validatePassword function
+      const passwordValidation = validatePassword(password);
+      if (!passwordValidation.isValid) {
+        return res.status(400).json({ message: passwordValidation.message });
+      }
+
       const user = User.build({ username });
       user.password = password; // Set the password explicitly
       await user.save({ hooks: false });
@@ -19,7 +42,7 @@ const userController = {
       res.status(500).json({ message: 'Error signing up user', error: error.message });
     }
   },
-  
+
   // Sign in functionality
   signIn: async (req, res) => {
     try {
@@ -33,15 +56,15 @@ const userController = {
       if (!validPassword) {
         return res.status(401).json({ message: 'Incorrect password, please try again' });
       }
-      // store username in session/ cookie
+      // store username in session/cookie
       req.session.user = username;
-      // Set isUserLoggedIn boolean to true in session / cookie
+      // Set isUserLoggedIn boolean to true in session/cookie
       req.session.isUserLoggedIn = true;
-      // Store userID in in session/ cookie
+      // Store userID in session/cookie
       req.session.userId = user.id;
 
       req.session.save(() => {
-        res.json({ user, message: 'You are now logged in!' });
+        res.json({ success: true, message: 'You are now logged in!', redirectUrl: '/home' });
       });
     } catch (error) {
       res.status(500).json({ message: 'Error signing in user', error: error.message });
